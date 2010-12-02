@@ -13,8 +13,9 @@ public class UIUtils {
         context.startActivity(intent);
     }
     
-    public static void doSearch(Context context) {
+    public static void doSearch(Context context, CharSequence searchTerm) {
     	final Intent intent = new Intent(context, SearchList.class);
+    	intent.putExtra("dk.dba.android.SearchTerm", searchTerm);
     	context.startActivity(intent);
     }
 

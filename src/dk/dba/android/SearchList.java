@@ -19,12 +19,15 @@ public class SearchList extends Activity {
 
 	private ImageButton homeButton;
 	private ListView searchList;
+	private String searchTerm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_list);
-		
+
+		searchTerm = getIntent().getExtras().get("dk.dba.android.SearchTerm").toString();
+
 		findAllViewsById();
 		
 		homeButton.setOnClickListener(new OnClickListener() {
@@ -46,7 +49,7 @@ public class SearchList extends Activity {
 		private LayoutInflater inflater;
 		
 		private DrawableManager drawableManager;
-
+		
 		public SearchAdapter(Context context) {
 			inflater = LayoutInflater.from(context);
 			drawableManager = new DrawableManager();
@@ -71,14 +74,16 @@ public class SearchList extends Activity {
 				holder = new ViewHolder();
 				holder.price = (TextView) convertView.findViewById(R.id.itemPrice);
 				holder.description = (TextView) convertView.findViewById(R.id.itemDescription);
+				holder.location = (TextView) convertView.findViewById(R.id.itemLocation);
 				holder.image = (ImageView) convertView.findViewById(R.id.itemImage);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
 			
-			holder.price.setText(COUNTRIES[position]);
+			holder.price.setText("Kr. 1234");
 			holder.description.setText("Beskrivelse af kjalsdh aslkdj hasdklha sdklah adsklh sdaklfh weoprusdkfæ asdfkljsdhfdsfhsdlkjf ddjfhsd " + COUNTRIES[position]);
+			holder.location.setText(COUNTRIES[position]);
 			drawableManager.fetchDrawableOnThread("http://i.dbastatic.dk/images/8/65/%5C70176665_06032010163617_8408_8.jpg", holder.image);
 			
 			return convertView;
@@ -87,6 +92,7 @@ public class SearchList extends Activity {
 		static class ViewHolder {
 			TextView description;
 			TextView price;
+			TextView location;
 			ImageView image;
 		}
 		

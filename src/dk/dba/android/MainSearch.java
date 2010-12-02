@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainSearch extends Activity {
 
@@ -36,7 +37,7 @@ public class MainSearch extends Activity {
 
 		searchButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				UIUtils.doSearch(MainSearch.this);
+				UIUtils.doSearch(MainSearch.this, searchText.getText());
 				
 				// IntentIntegrator.initiateScan(MainSearch.this);
 			}
