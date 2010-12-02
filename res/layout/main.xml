@@ -4,24 +4,30 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:background="#3490D6">
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/logo" android:id="@+id/logoImage" android:layout_centerHorizontal="true" android:layout_above="@+id/LinearLayout01" android:layout_marginBottom="25px">
+		</ImageView><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical" android:layout_width="fill_parent"
-		android:layout_centerInParent="true" android:layout_height="wrap_content">
+		android:layout_centerInParent="true" android:layout_height="wrap_content" android:id="@+id/LinearLayout01">
 
-		<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:src="@drawable/logo" android:layout_gravity="center_horizontal" android:id="@+id/logoImage">
-		</ImageView>
+		
 
+		<RelativeLayout android:id="@+id/RelativeLayout01"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:paddingLeft="10px" android:paddingRight="10px">
+			<Button android:id="@+id/searchButton" android:text="@string/search"
+				android:layout_alignParentRight="true" android:layout_height="wrap_content"
+				android:layout_width="wrap_content">
+			</Button>
+			<EditText android:layout_height="wrap_content" android:hint="@string/searchHint"
+				android:layout_alignParentLeft="true"
+				android:layout_toLeftOf="@id/searchButton"
+			
+				android:inputType="text" android:isScrollContainer="false"
+				android:id="@+id/searchText" android:layout_width="fill_parent">
+			</EditText>
+		</RelativeLayout>
 
-		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent"
-			android:layout_marginTop="25px" android:layout_marginLeft="25px"
-			android:layout_marginRight="25px" android:layout_marginBottom="25px" android:hint="@string/searchHint" android:inputType="text" android:isScrollContainer="false" android:id="@+id/searchText">
-		</EditText>
-		<Button android:id="@+id/searchButton" android:text="@string/search"
-			android:layout_width="100px" android:layout_height="75px"
-			android:layout_gravity="center">
-		</Button>
-
-	</LinearLayout>
+	
+</LinearLayout>
 
 </RelativeLayout>
