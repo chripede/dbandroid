@@ -36,6 +36,7 @@ public class SearchList extends Activity {
 			}
 		});
 
+		searchList.addFooterView(View.inflate(this, R.layout.search_list_item_progress, null)); // TODO: Ret mig
 		searchList.setAdapter(new SearchAdapter(this));
 	}
 

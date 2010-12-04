@@ -6,11 +6,6 @@ import java.util.Map;
 import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import dk.dba.android.util.UIUtils;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,11 +16,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import dk.dba.android.util.UIUtils;
 
 public class MainSearch extends Activity {
 
 	private Button searchButton;
+	private Button scanButton;
 	private EditText searchText;
 
 	@Override
@@ -38,14 +38,19 @@ public class MainSearch extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				UIUtils.doSearch(MainSearch.this, searchText.getText());
-				
-				// IntentIntegrator.initiateScan(MainSearch.this);
+			}
+		});
+		
+		scanButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				IntentIntegrator.initiateScan(MainSearch.this);
 			}
 		});
 	}
 
 	private void findAllViewsById() {
 		searchButton = (Button) findViewById(R.id.searchButton);
+		scanButton = (Button) findViewById(R.id.scanButton);
 		searchText = (EditText) findViewById(R.id.searchText);
 	}
 
