@@ -12,8 +12,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,6 +36,26 @@ public class MainSearch extends Activity {
 		setContentView(R.layout.main);
 
 		findAllViewsById();
+		registerListeners();
+	}
+
+	private void findAllViewsById() {
+		searchButton = (Button) findViewById(R.id.searchButton);
+		scanButton = (Button) findViewById(R.id.scanButton);
+		searchText = (EditText) findViewById(R.id.searchText);
+	}
+
+	private void registerListeners() {
+		searchText.setOnKeyListener(new OnKeyListener() {
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if(keyCode == KeyEvent.KEYCODE_ENTER)
+				{
+					searchButton.performClick();
+					return true;
+				}
+				return false;
+			}
+		});
 
 		searchButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -46,12 +68,6 @@ public class MainSearch extends Activity {
 				IntentIntegrator.initiateScan(MainSearch.this);
 			}
 		});
-	}
-
-	private void findAllViewsById() {
-		searchButton = (Button) findViewById(R.id.searchButton);
-		scanButton = (Button) findViewById(R.id.scanButton);
-		searchText = (EditText) findViewById(R.id.searchText);
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

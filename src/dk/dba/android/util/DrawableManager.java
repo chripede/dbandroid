@@ -42,8 +42,7 @@ public class DrawableManager {
 		return null;
 	}
 
-	public void fetchDrawableOnThread(final String urlString,
-			final ImageView imageView) {
+	public void fetchDrawableOnThread(final String urlString, final ImageView imageView) {
 		if (drawableMap.containsKey(urlString)) {
 			imageView.setImageDrawable(drawableMap.get(urlString));
 			return;
