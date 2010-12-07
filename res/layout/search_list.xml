@@ -20,7 +20,7 @@
 	</LinearLayout>
 
 	<ListView android:layout_width="fill_parent"
-		android:id="@+id/searchListView" android:layout_height="fill_parent" android:layout_below="@+id/menubarLayout" android:background="#FFFFFF">
+		android:id="@+id/searchListView" android:layout_height="fill_parent" android:layout_below="@+id/menubarLayout" android:background="#FFFFFF" android:choiceMode="singleChoice" android:clickable="true" android:dividerHeight="1px" android:divider="#C0C0C0" android:listSelector="@drawable/gradient_background" android:drawSelectorOnTop="false" android:cacheColorHint="#FFFFFF">
 	</ListView>
 	
 </RelativeLayout>
