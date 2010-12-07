@@ -91,13 +91,11 @@ public class SearchList extends Activity {
 			public void handleMessage(Message msg) {
 				switch(msg.what) {
 				case MESSAGE_MORE_DATA:
-					// TODO: Tilføj data fra message til dataset på searchAdapter
 					searchAdapter.AddData((List<Ad>) msg.obj);
 					searchAdapter.notifyDataSetChanged();
 					loadingData = false;
 					break;
 				case MESSAGE_NO_MORE_DATA:
-					// TODO: Tilføj data fra message til dataset på searchAdapter
 					searchAdapter.AddData((List<Ad>) msg.obj);
 					searchAdapter.notifyDataSetChanged();
 					searchList.removeFooterView(footerView);
@@ -115,16 +113,17 @@ public class SearchList extends Activity {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
-				// TODO: Kald webservice her
-				List<Ad> ads = DbaSearchService.Search(searchTerm, pageSize, startFrom); 
-				message.obj = ads;
-
-				if(ads.size() < pageSize)
-					message.what = MESSAGE_NO_MORE_DATA;
-				else
-					message.what = MESSAGE_MORE_DATA;
-
-				// message.what = MESSAGE_ERROR;
+				try {
+					List<Ad> ads = DbaSearchService.Search(searchTerm, pageSize, startFrom); 
+					message.obj = ads;
+	
+					if(ads.size() < pageSize)
+						message.what = MESSAGE_NO_MORE_DATA;
+					else
+						message.what = MESSAGE_MORE_DATA;
+				} catch (Exception e) {
+					message.what = MESSAGE_ERROR;
+				}
 				
 				message.sendToTarget();
 			}
