@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/LinearLayout01" android:orientation="vertical"
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:background="#3490D6"
+		android:id="@+id/menubarLayout">
+		<ImageView android:id="@+id/ImageView02"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/logo_small" android:layout_weight="1"></ImageView>
+		<ImageView android:id="@+id/ImageView01"
+			android:layout_height="wrap_content" android:src="@drawable/line"
+			android:layout_gravity="right" android:layout_width="wrap_content"
+			android:layout_marginRight="4px"></ImageView>
+		<ImageButton android:layout_height="wrap_content"
+			android:background="#3490D6" android:layout_gravity="right"
+			android:layout_width="wrap_content" android:layout_marginRight="4px"
+			android:id="@+id/searchButton" android:src="@drawable/search_button"></ImageButton>
+	</LinearLayout>
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:padding="6dip">
+
+		<Gallery android:id="@+id/itemGallery" android:layout_width="fill_parent"
+			android:layout_below="@+id/menubarLayout"></Gallery>
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/itemTitle"
+			android:layout_below="@+id/itemGallery" android:layout_alignLeft="@+id/itemGallery"
+			android:text="itemTitle" android:textStyle="bold" android:textSize="25sp"></TextView>
+
+		<TextView android:layout_below="@+id/itemTitle"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignLeft="@+id/itemTitle" android:text="itemPrice"
+			android:textSize="15sp" android:id="@+id/itemPrice"
+			android:paddingTop="10dip" android:textStyle="bold"></TextView>
+
+
+	<TextView android:layout_below="@+id/itemPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/itemPrice" android:id="@+id/itemDescription" android:paddingTop="10dip" android:text="itemDescription"></TextView>
+</RelativeLayout>
+
+</LinearLayout>

@@ -136,8 +136,10 @@ public class SearchList extends Activity {
 		private LayoutInflater inflater;
 		private DrawableManager drawableManager;
 		private List<Ad> ads;
+		private Context context;
 		
 		public SearchAdapter(Context context) {
+			this.context = context;
 			inflater = LayoutInflater.from(context);
 			drawableManager = new DrawableManager();
 			ads = new ArrayList<Ad>();
