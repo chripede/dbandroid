@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="fill_parent" android:layout_height="?android:attr/listPreferredItemHeight"
 	android:padding="6dip" xmlns:android="http://schemas.android.com/apk/res/android">
-
 	<ImageView android:src="@drawable/no_pictures" android:id="@+id/itemImage"
 		android:layout_gravity="center" android:layout_marginLeft="2dip"
 		android:layout_height="63px" 
 		android:layout_width="90px" 
 		android:layout_marginRight="6dip" android:scaleType="centerCrop"
 		 />
-		
 	<RelativeLayout android:id="@+id/RelativeLayout01"
 		android:layout_height="wrap_content" android:layout_width="fill_parent">
 		<TextView android:layout_width="wrap_content"
@@ -27,7 +25,5 @@
 			android:textColor="#000000" android:layout_alignParentRight="true"
 			android:layout_alignParentBottom="true" android:layout_below="@+id/itemDescription"></TextView>
 	</RelativeLayout>
-
-
 
 </LinearLayout>
