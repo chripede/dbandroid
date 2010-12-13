@@ -52,6 +52,12 @@ public class SaxFeedParser {
 				ads.add(currentAd.copy());
 			}
 		});
+		Element adId = adElement.getChild("ad-external-reference-id");
+		adId.setEndTextElementListener(new EndTextElementListener() {
+			public void end(String body) {
+				currentAd.setAdId(body);
+			}
+		});
 		Element title = adElement.getChild("title");
 		title.setEndTextElementListener(new EndTextElementListener() {
 			public void end(String body) {

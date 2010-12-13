@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -83,6 +85,14 @@ public class SearchList extends Activity {
 				}
 			}
 		});
+		
+		searchList.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView parent, View v, int position, long id) {
+				Ad ad = searchAdapter.getItem(position);
+				// TODO: Start ny intent og send adid med
+				Toast.makeText(SearchList.this, "Henter ad " + ad.getAdId(), Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 
 	private void createHandlers() {
@@ -147,8 +157,8 @@ public class SearchList extends Activity {
 			return ads.size();
 		}
 
-		public Object getItem(int position) {
-			return position;
+		public Ad getItem(int position) {
+			return ads.get(position);
 		}
 
 		public long getItemId(int position) {
@@ -171,7 +181,7 @@ public class SearchList extends Activity {
 			
 			Ad ad = ads.get(position);
 
-			holder.price.setText("Kr. " + ad.getPrice());
+			holder.price.setText("Kr. " + ad.getPrice().replace(".0000", ""));
 			holder.description.setText(ad.getDescription());
 			holder.location.setText(ad.getAddressZipcode() + " " + ad.getAddressCity());
 			

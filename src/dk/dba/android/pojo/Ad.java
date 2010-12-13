@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Ad {
 
+	private String adId;
 	private String title;
 	private String description;
 	private String price;
@@ -19,7 +20,15 @@ public class Ad {
 	public Ad() {
 		matrixMap = new HashMap<String, String>();
 	}
-	
+
+	public String getAdId() {
+		return adId;
+	}
+
+	public void setAdId(String adId) {
+		this.adId = adId;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -107,9 +116,10 @@ public class Ad {
 	public void addToMatrixMap(String label, String value) {
 		matrixMap.put(label, value);
 	}
-	
-	public Ad copy(){
+
+	public Ad copy() {
 		Ad copy = new Ad();
+		copy.adId = adId;
 		copy.title = title;
 		copy.description = description;
 		copy.price = price;
@@ -121,7 +131,8 @@ public class Ad {
 		copy.addressLatitude = addressLatitude;
 		copy.thumbnail = thumbnail;
 		copy.matrixMap = (HashMap<String, String>) matrixMap.clone();
-		
+
+		adId = null;
 		title = null;
 		description = null;
 		price = null;
@@ -133,7 +144,7 @@ public class Ad {
 		addressLatitude = null;
 		thumbnail = null;
 		matrixMap.clear();
-		
+
 		return copy;
 	}
 }
