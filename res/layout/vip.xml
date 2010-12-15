@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/LinearLayout01" android:orientation="vertical"
-	android:layout_height="fill_parent" android:layout_width="fill_parent">
+	android:background="#ffffff" android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
 
 	<LinearLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:background="#3490D6"
@@ -19,25 +20,55 @@
 			android:id="@+id/searchButton" android:src="@drawable/search_button"></ImageButton>
 	</LinearLayout>
 
-	<RelativeLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:padding="6dip">
+	<ScrollView android:id="@+id/scrollView"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
 
-		<Gallery android:id="@+id/itemGallery" android:layout_width="fill_parent"
-			android:layout_below="@+id/menubarLayout"></Gallery>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:padding="6dip">
 
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/itemTitle"
-			android:layout_below="@+id/itemGallery" android:layout_alignLeft="@+id/itemGallery"
-			android:text="itemTitle" android:textStyle="bold" android:textSize="25sp"></TextView>
+			<Gallery android:id="@+id/itemGallery" android:layout_width="fill_parent"
+				android:layout_height="200dip" android:layout_below="@+id/menubarLayout"></Gallery>
 
-		<TextView android:layout_below="@+id/itemTitle"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:layout_alignLeft="@+id/itemTitle" android:text="itemPrice"
-			android:textSize="15sp" android:id="@+id/itemPrice"
-			android:paddingTop="10dip" android:textStyle="bold"></TextView>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/itemTitle"
+				android:layout_below="@+id/itemGallery" android:layout_alignLeft="@+id/itemGallery"
+				android:text="itemTitle" android:textStyle="bold" android:textSize="25sp"
+				android:textColor="#10568D"></TextView>
 
+			<TextView android:layout_below="@+id/itemTitle"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignLeft="@+id/itemTitle" android:text="itemPrice"
+				android:textSize="15sp" android:id="@+id/itemPrice"
+				android:paddingTop="10dip" android:textStyle="bold"
+				android:textColor="#000000"></TextView>
 
-	<TextView android:layout_below="@+id/itemPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/itemPrice" android:id="@+id/itemDescription" android:paddingTop="10dip" android:text="itemDescription"></TextView>
+			<TableLayout android:layout_width="fill_parent" android:background="#C0C0C0"
+				android:layout_marginTop="10dip"
+				android:paddingTop="1px" android:layout_below="@+id/itemPrice"
+				android:layout_height="wrap_content" android:id="@+id/itemMatrixTableLayout"
+				android:layout_alignLeft="@+id/itemPrice"></TableLayout>
+
+			<TextView android:layout_below="@+id/itemMatrixTableLayout"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignLeft="@+id/itemPrice" android:id="@+id/itemDescription"
+				android:paddingTop="10dip" android:text="itemDescription"
+				android:textColor="#000000"></TextView>
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_below="@+id/itemDescription" android:layout_height="wrap_content"
+				android:id="@+id/TextView01" android:paddingTop="10dip"
+				android:text="Kontakt" android:layout_alignLeft="@+id/itemDescription"
+				android:textSize="25sp" android:textStyle="bold" android:textColor="#10568D">
+			</TextView>
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_below="@+id/TextView01" android:layout_height="wrap_content"
+				android:text="itemContactInfo" android:id="@+id/itemContactInfo"
+				android:textColor="#000000" android:layout_alignLeft="@+id/TextView01"></TextView>
+
+		
 </RelativeLayout>
+
+	</ScrollView>
 
 </LinearLayout>

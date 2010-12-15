@@ -1,8 +1,10 @@
 package dk.dba.android.pojo;
 
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-public class Ad {
+public class Ad implements Serializable {
 
 	private String adId;
 	private String title;
@@ -15,10 +17,10 @@ public class Ad {
 	private String addressLongitude;
 	private String addressLatitude;
 	private String thumbnail;
-	private HashMap<String, String> matrixMap;
+	private LinkedHashMap<String, String> matrixMap;
 
 	public Ad() {
-		matrixMap = new HashMap<String, String>();
+		matrixMap = new LinkedHashMap<String, String>();
 	}
 
 	public String getAdId() {
@@ -130,7 +132,7 @@ public class Ad {
 		copy.addressLongitude = addressLongitude;
 		copy.addressLatitude = addressLatitude;
 		copy.thumbnail = thumbnail;
-		copy.matrixMap = (HashMap<String, String>) matrixMap.clone();
+		copy.matrixMap = (LinkedHashMap<String, String>) matrixMap.clone();
 
 		adId = null;
 		title = null;

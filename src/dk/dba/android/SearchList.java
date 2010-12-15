@@ -89,8 +89,7 @@ public class SearchList extends Activity {
 		searchList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView parent, View v, int position, long id) {
 				Ad ad = searchAdapter.getItem(position);
-				// TODO: Start ny intent og send adid med
-				Toast.makeText(SearchList.this, "Henter ad " + ad.getAdId(), Toast.LENGTH_LONG).show();
+				UIUtils.showVip(SearchList.this, ad);
 			}
 		});
 	}
