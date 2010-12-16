@@ -26,24 +26,26 @@
 		<RelativeLayout android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:padding="6dip">
 
-			<Gallery android:id="@+id/itemGallery" android:layout_width="fill_parent"
-				android:layout_height="200dip" android:layout_below="@+id/menubarLayout"></Gallery>
-
 			<TextView android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:id="@+id/itemTitle"
-				android:layout_below="@+id/itemGallery" android:layout_alignLeft="@+id/itemGallery"
+				android:layout_below="@+id/menubarLayout" android:layout_alignLeft="@+id/itemGallery"
 				android:text="itemTitle" android:textStyle="bold" android:textSize="25sp"
 				android:textColor="#10568D"></TextView>
 
-			<TextView android:layout_below="@+id/itemTitle"
+			<ImageView android:id="@+id/itemGallery"
+				android:layout_below="@+id/itemTitle" android:layout_width="fill_parent"
+				android:src="@drawable/no_pictures" android:scaleType="centerCrop"
+				android:layout_height="200dip"></ImageView>
+
+			<TextView android:layout_below="@+id/itemGallery"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_alignLeft="@+id/itemTitle" android:text="itemPrice"
 				android:textSize="15sp" android:id="@+id/itemPrice"
 				android:paddingTop="10dip" android:textStyle="bold"
 				android:textColor="#000000"></TextView>
 
-			<TableLayout android:layout_width="fill_parent" android:background="#C0C0C0"
-				android:layout_marginTop="10dip"
+			<TableLayout android:layout_width="fill_parent"
+				android:background="#C0C0C0" android:layout_marginTop="10dip"
 				android:paddingTop="1px" android:layout_below="@+id/itemPrice"
 				android:layout_height="wrap_content" android:id="@+id/itemMatrixTableLayout"
 				android:layout_alignLeft="@+id/itemPrice"></TableLayout>
@@ -66,8 +68,8 @@
 				android:text="itemContactInfo" android:id="@+id/itemContactInfo"
 				android:textColor="#000000" android:layout_alignLeft="@+id/TextView01"></TextView>
 
-		
-</RelativeLayout>
+
+		</RelativeLayout>
 
 	</ScrollView>
 

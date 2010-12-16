@@ -145,10 +145,8 @@ public class SearchList extends Activity {
 		private LayoutInflater inflater;
 		private DrawableManager drawableManager;
 		private List<Ad> ads;
-		private Context context;
 		
 		public SearchAdapter(Context context) {
-			this.context = context;
 			inflater = LayoutInflater.from(context);
 			drawableManager = new DrawableManager();
 			ads = new ArrayList<Ad>();
@@ -188,6 +186,8 @@ public class SearchList extends Activity {
 			
 			if(ad.getThumbnail() != null)
 				drawableManager.fetchDrawableOnThread(ads.get(position).getThumbnail(), holder.image);
+			else
+				holder.image.setImageResource(R.drawable.no_pictures);
 
 			return convertView;
 		}

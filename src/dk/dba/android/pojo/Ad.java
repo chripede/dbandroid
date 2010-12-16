@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 
 public class Ad implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String adId;
 	private String title;
 	private String description;
@@ -17,6 +19,7 @@ public class Ad implements Serializable {
 	private String addressLongitude;
 	private String addressLatitude;
 	private String thumbnail;
+	private String image;
 	private LinkedHashMap<String, String> matrixMap;
 
 	public Ad() {
@@ -111,6 +114,14 @@ public class Ad implements Serializable {
 		this.thumbnail = thumbnail;
 	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
 	public HashMap<String, String> getMatrixMap() {
 		return matrixMap;
 	}
@@ -119,6 +130,7 @@ public class Ad implements Serializable {
 		matrixMap.put(label, value);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Ad copy() {
 		Ad copy = new Ad();
 		copy.adId = adId;
@@ -132,6 +144,7 @@ public class Ad implements Serializable {
 		copy.addressLongitude = addressLongitude;
 		copy.addressLatitude = addressLatitude;
 		copy.thumbnail = thumbnail;
+		copy.image = image;
 		copy.matrixMap = (LinkedHashMap<String, String>) matrixMap.clone();
 
 		adId = null;
@@ -145,6 +158,7 @@ public class Ad implements Serializable {
 		addressLongitude = null;
 		addressLatitude = null;
 		thumbnail = null;
+		image = null;
 		matrixMap.clear();
 
 		return copy;

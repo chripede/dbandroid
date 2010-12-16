@@ -96,6 +96,7 @@ public class MainSearch extends Activity {
 			dialog = ProgressDialog.show(MainSearch.this, "Henter data", "Vent venligst..."); 
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		protected Void doInBackground(Void... params) {
 			XMLRPCClient client = new XMLRPCClient("http://www.upcdatabase.com/xmlrpc");
@@ -103,9 +104,9 @@ public class MainSearch extends Activity {
 				Map<String, String> rpcParams = new HashMap<String, String>();
 				rpcParams.put("rpc_key", "cf25e34e3d92db42079e83f1b11e6b43f88bcfcf");
 				rpcParams.put("upc", scanResult.getContents());
-				HashMap result = (HashMap) client.call("lookup", rpcParams);
-				String resultSize = result.get("size").toString();
-				final String resultDesc = result.get("description").toString();
+				HashMap<String, String> result = (HashMap<String, String>) client.call("lookup", rpcParams);
+				//String resultSize = result.get("size");
+				final String resultDesc = result.get("description");
 				MainSearch.this.runOnUiThread(new Runnable() {
 					public void run() {
 						searchText.setText(resultDesc);

@@ -20,7 +20,8 @@ import dk.dba.android.pojo.Ad;
 public class SaxFeedParser {
 	
 	final URL feedUrl;
-	static boolean useThisPicture = false;
+	static boolean isThumbnail = false;
+	static boolean isImage = false;
 	
 	public SaxFeedParser(String feedUrl) {
 		try {
@@ -119,19 +120,24 @@ public class SaxFeedParser {
 		Element picture = pictures.getChild("picture");
 		picture.setElementListener(new ElementListener() {
 			public void end() {
-				useThisPicture = false;
+				isThumbnail = false;
+				isImage = false;
 			}
 			
 			public void start(Attributes attributes) {
 				if(attributes.getValue("size-category").equals("Thumbnail"))
-					useThisPicture = true;
+					isThumbnail = true;
+				else if(attributes.getValue("size-category").equals("Large"))
+					isImage = true;
 			}
 		});
 		Element pictureLink = picture.getChild("link");
 		pictureLink.setElementListener(new ElementListener() {
 			public void start(Attributes attributes) {
-				if(useThisPicture)
+				if(isThumbnail)
 					currentAd.setThumbnail(attributes.getValue("href"));
+				else if(isImage)
+					currentAd.setImage(attributes.getValue("href"));
 			}
 			public void end() {}
 		});

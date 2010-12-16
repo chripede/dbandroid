@@ -8,16 +8,16 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.style.TextAppearanceSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Gallery;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
 import dk.dba.android.pojo.Ad;
+import dk.dba.android.util.DrawableManager;
 
 public class Vip extends Activity {
 
@@ -25,7 +25,7 @@ public class Vip extends Activity {
 	private TextView itemPrice;
 	private TextView itemDescription;
 	private TextView itemContactInfo;
-	private Gallery itemGallery;
+	private ImageView itemGallery;
 	private Ad item;
 	private ImageButton backButton;
 	private TableLayout matrixTable;
@@ -60,6 +60,13 @@ public class Vip extends Activity {
 		itemContactInfo.setText(item.getAddressStreet() + "\n"
 				+ item.getAddressZipcode() + " " + item.getAddressCity() + "\n"
 				+ "Tlf: " + item.getAddressPhone());
+		
+		if(item.getImage() != null) {
+			DrawableManager dm = new DrawableManager();
+			dm.fetchDrawableOnThread(item.getImage(), itemGallery);
+		} else {
+			itemGallery.setImageResource(R.drawable.no_pictures);
+		}
 	}
 	
 	private void updateMatrixData() {
@@ -93,7 +100,7 @@ public class Vip extends Activity {
 		itemPrice = (TextView) findViewById(R.id.itemPrice);
 		itemDescription = (TextView) findViewById(R.id.itemDescription);
 		itemContactInfo = (TextView) findViewById(R.id.itemContactInfo);
-		itemGallery = (Gallery) findViewById(R.id.itemGallery);
+		itemGallery = (ImageView) findViewById(R.id.itemGallery);
 		backButton = (ImageButton) findViewById(R.id.searchButton);
 		matrixTable = (TableLayout) findViewById(R.id.itemMatrixTableLayout);
 	}
