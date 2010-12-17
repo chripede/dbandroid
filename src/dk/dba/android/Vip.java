@@ -41,10 +41,18 @@ public class Vip extends Activity {
 		registerListeners();
 		updateViewData();
 		updateMatrixData();
-		
-		matrixTable.setShrinkAllColumns(true);
 	}
 
+	private void findAllViewsById() {
+		itemTitle = (TextView) findViewById(R.id.itemTitle);
+		itemPrice = (TextView) findViewById(R.id.itemPrice);
+		itemDescription = (TextView) findViewById(R.id.itemDescription);
+		itemContactInfo = (TextView) findViewById(R.id.itemContactInfo);
+		itemGallery = (ImageView) findViewById(R.id.itemGallery);
+		backButton = (ImageButton) findViewById(R.id.searchButton);
+		matrixTable = (TableLayout) findViewById(R.id.itemMatrixTableLayout);
+	}
+	
 	private void registerListeners() {
 		backButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -93,15 +101,7 @@ public class Vip extends Activity {
 			
 			matrixTable.addView(row, layout);
 		}
+		matrixTable.setShrinkAllColumns(true);
 	}
 
-	private void findAllViewsById() {
-		itemTitle = (TextView) findViewById(R.id.itemTitle);
-		itemPrice = (TextView) findViewById(R.id.itemPrice);
-		itemDescription = (TextView) findViewById(R.id.itemDescription);
-		itemContactInfo = (TextView) findViewById(R.id.itemContactInfo);
-		itemGallery = (ImageView) findViewById(R.id.itemGallery);
-		backButton = (ImageButton) findViewById(R.id.searchButton);
-		matrixTable = (TableLayout) findViewById(R.id.itemMatrixTableLayout);
-	}
 }

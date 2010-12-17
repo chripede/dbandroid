@@ -18,6 +18,10 @@ import android.widget.ImageView;
 public class DrawableManager {
 
 	private final Map<String, Drawable> drawableMap;
+	
+	private final static int MESSAGE_FAILURE = 0;
+	private final static int MESSAGE_SUCCESS = 1;
+	
 
 	public DrawableManager() {
 		drawableMap = new HashMap<String, Drawable>();
@@ -51,7 +55,7 @@ public class DrawableManager {
 		final Handler handler = new Handler() {
 			@Override
 			public void handleMessage(Message message) {
-				if (message.what == 1)
+				if (message.what == MESSAGE_SUCCESS)
 					imageView.setImageDrawable((Drawable) message.obj);
 			}
 		};
@@ -62,11 +66,11 @@ public class DrawableManager {
 				Drawable drawable = fetchDrawable(urlString);
 				Message message;
 				if (drawable != null)
-					message = handler.obtainMessage(1, drawable);
+					message = handler.obtainMessage(MESSAGE_SUCCESS, drawable);
 				else
-					message = handler.obtainMessage(0);
+					message = handler.obtainMessage(MESSAGE_FAILURE);
 
-				handler.sendMessage(message);
+				message.sendToTarget();
 			}
 		};
 		thread.start();
