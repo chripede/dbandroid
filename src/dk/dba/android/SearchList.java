@@ -51,8 +51,8 @@ public class SearchList extends Activity {
 		footerView = View.inflate(this, R.layout.search_list_item_progress, null);
 		
 		findAllViewsById();
-		registerListeners();
 		createHandlers();
+		registerListeners();
 
 		searchList.addFooterView(footerView);
 		searchList.setAdapter(searchAdapter);
@@ -61,37 +61,6 @@ public class SearchList extends Activity {
 	private void findAllViewsById() {
 		homeButton = (ImageButton) findViewById(R.id.homeButton);
 		searchList = (ListView) findViewById(R.id.searchListView);
-	}
-
-	private void registerListeners() {
-		homeButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				UIUtils.goHome(SearchList.this);
-			}
-		});
-		
-		searchList.setOnScrollListener(new OnScrollListener() {
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				return;
-			}
-			
-			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-				boolean loadMore = totalItemCount > 0 
-					&& !loadingData
-					&& firstVisibleItem + visibleItemCount >= totalItemCount;
-				if(loadMore) {
-					loadingData = true;
-					loadData(searchAdapter, searchTerm, 10, searchAdapter.getCount(), searchListHandler.obtainMessage());
-				}
-			}
-		});
-		
-		searchList.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView parent, View v, int position, long id) {
-				Ad ad = searchAdapter.getItem(position);
-				UIUtils.showVip(SearchList.this, ad);
-			}
-		});
 	}
 
 	private void createHandlers() {
@@ -117,7 +86,36 @@ public class SearchList extends Activity {
 			}
 		};
 	}
-	
+
+	private void registerListeners() {
+		homeButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				UIUtils.goHome(SearchList.this);
+			}
+		});
+		
+		searchList.setOnScrollListener(new OnScrollListener() {
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				return;
+			}
+			
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				boolean loadMore = totalItemCount > 0 && !loadingData && firstVisibleItem + visibleItemCount >= totalItemCount;
+				if(loadMore) {
+					loadingData = true;
+					loadData(searchAdapter, searchTerm, 10, searchAdapter.getCount(), searchListHandler.obtainMessage());
+				}
+			}
+		});
+		
+		searchList.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView parent, View v, int position, long id) {
+				Ad ad = searchAdapter.getItem(position);
+				UIUtils.showVip(SearchList.this, ad);
+			}
+		});
+	}
+
 	private void loadData(final SearchAdapter searchAdapter, final String searchTerm, final int pageSize, final int startFrom, final Message message) {
 		Thread thread = new Thread() {
 			@Override
