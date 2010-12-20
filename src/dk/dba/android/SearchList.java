@@ -25,6 +25,7 @@ import android.widget.Toast;
 import dk.dba.android.pojo.Ad;
 import dk.dba.android.util.DbaSearchService;
 import dk.dba.android.util.DrawableManager;
+import dk.dba.android.util.TrackUtil;
 import dk.dba.android.util.UIUtils;
 
 public class SearchList extends Activity {
@@ -32,7 +33,7 @@ public class SearchList extends Activity {
 	private final static int MESSAGE_MORE_DATA = 0;
 	private final static int MESSAGE_NO_MORE_DATA = 1;
 	private final static int MESSAGE_ERROR = 2;
-
+	
 	private ImageButton homeButton;
 	private ListView searchList;
 	private String searchTerm;
@@ -46,6 +47,8 @@ public class SearchList extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_list);
 
+		TrackUtil.getTracker(this).trackPageView("/srp");
+		
 		searchTerm = getIntent().getExtras().get("dk.dba.android.SearchTerm").toString();
 		searchAdapter = new SearchAdapter(this);
 		footerView = View.inflate(this, R.layout.search_list_item_progress, null);
@@ -104,6 +107,7 @@ public class SearchList extends Activity {
 				if(loadMore) {
 					loadingData = true;
 					loadData(searchAdapter, searchTerm, 10, searchAdapter.getCount(), searchListHandler.obtainMessage());
+					TrackUtil.getTracker(null).trackEvent("SRP", "Scroll to load more", "Scroll", totalItemCount);
 				}
 			}
 		});
@@ -128,6 +132,8 @@ public class SearchList extends Activity {
 						message.what = MESSAGE_NO_MORE_DATA;
 					else
 						message.what = MESSAGE_MORE_DATA;
+					
+					TrackUtil.getTracker(null).dispatch();
 				} catch (Exception e) {
 					message.what = MESSAGE_ERROR;
 				}

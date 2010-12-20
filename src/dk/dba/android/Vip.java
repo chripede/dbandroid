@@ -18,6 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import dk.dba.android.pojo.Ad;
 import dk.dba.android.util.DrawableManager;
+import dk.dba.android.util.TrackUtil;
 
 public class Vip extends Activity {
 
@@ -34,6 +35,8 @@ public class Vip extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vip);
+
+		TrackUtil.getTracker(this).trackPageView("/vip");
 
 		item = (Ad) getIntent().getExtras().get("dk.dba.android.Ad");
 		

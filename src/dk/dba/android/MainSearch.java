@@ -22,6 +22,7 @@ import android.widget.EditText;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import dk.dba.android.util.TrackUtil;
 import dk.dba.android.util.UIUtils;
 
 public class MainSearch extends Activity {
@@ -29,14 +30,22 @@ public class MainSearch extends Activity {
 	private Button searchButton;
 	private Button scanButton;
 	private EditText searchText;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+		TrackUtil.getTracker(this).trackPageView("/main");
 
 		findAllViewsById();
 		registerListeners();
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		TrackUtil.getTracker(this).stop();
 	}
 
 	private void findAllViewsById() {
