@@ -2,6 +2,6 @@
 <resources>
     <string name="searchHint">Hvad søger du efter?</string>
     <string name="search">Søg</string>
-    <string name="hello">Hello World, ApiDemos!</string>
+    
     <string name="app_name">DBAndroid</string>
 </resources>
